@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
-  createUserAuthWithEmailAndPassword,
   createUserDocumentFromAuth,
   signInUserAuthWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../utils/firebase.utils";
 import FormInput from "../components/form-input/form-input.component.";
-import "./sign-in-form.styles.scss";
 import Button from "../components/button/button.component";
+import { UserContext } from "../contexts/user.context";
+import "./sign-in-form.styles.scss";
 
 const defaultFormFields = {
   email: "",
@@ -15,6 +15,7 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const [formData, setFormData] = useState(defaultFormFields);
   const { email, password } = formData;
 
@@ -23,11 +24,11 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const response = await signInUserAuthWithEmailAndPassword(
+      const { user } = await signInUserAuthWithEmailAndPassword(
         email,
         password
       );
-      console.log("response", response);
+      console.log("response", user);
     } catch (error) {
       switch (error.code) {
         case "auth/email-already-in-use":
@@ -81,7 +82,7 @@ const SignInForm = () => {
           name="password"
         />
         <div className="buttons-container">
-          <Button type="submit">Sign Up</Button>
+          <Button type="submit">Sign In</Button>
           <Button type="button" buttonType="google" onClick={googleSignIn}>
             Google sign in
           </Button>

@@ -18,10 +18,7 @@ const Authentication = () => {
 
   const googleSignInWithRedirection = async () => {
     const { user } = await signInWithGoogleRedirect();
-    console.log("user", user);
     const userDocRef = await createUserDocumentFromAuth(user);
-
-    console.log("user", userDocRef);
   };
 
   return (

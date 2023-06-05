@@ -8,7 +8,6 @@ import FormInput from "../components/form-input/form-input.component.";
 import Button, {
   BUTTON_TYPES_CLASSES,
 } from "../components/button/button.component";
-import { UserContext } from "../contexts/user.context";
 import "./sign-in-form.styles.scss";
 
 const defaultFormFields = {
@@ -17,7 +16,6 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
   const [formData, setFormData] = useState(defaultFormFields);
   const { email, password } = formData;
 

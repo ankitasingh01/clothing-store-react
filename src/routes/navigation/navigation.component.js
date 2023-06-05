@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 import { selectCurrentUser } from "../../store/user/user.selector";
-import { UserContext } from "../../contexts/user.context";
 import { CartContext } from "../../contexts/cart.context";
 import { signOutUser } from "../../utils/firebase.utils";
 import CartIcon from "../../components/cart-icon/cart-icon-component";
